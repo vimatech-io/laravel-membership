@@ -16,11 +16,23 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.3, 8.4]
-        laravel: [11.*, 12.*]
-        dependency-version: [prefer-stable]
+        php: ['8.3', '8.4']
+        laravel: ['11.*', '12.*', '13.*']
+        include:
+          - laravel: '11.*'
+            testbench: '9.*'
+            pest: '^3.0'
+            pest_plugin: '^3.0'
+          - laravel: '12.*'
+            testbench: '10.*'
+            pest: '^3.0'
+            pest_plugin: '^3.0'
+          - laravel: '13.*'
+            testbench: '11.*'
+            pest: '^4.0'
+            pest_plugin: '^4.0'
 
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
 
     steps:
       - uses: actions/checkout@v6
@@ -34,8 +46,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --no-interaction
+          composer config policy.advisories.block false
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "pestphp/pest:${{ matrix.pest }}" "pestphp/pest-plugin-laravel:${{ matrix.pest_plugin }}" --no-interaction --no-update --dev
+          composer update --prefer-stable --no-interaction
 
       - name: Run tests
         run: vendor/bin/pest
