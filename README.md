@@ -34,7 +34,7 @@ Laravel Membership provides a small backend-only layer for that.
 | Scopes | ✅ |
 | Soft deletes | ✅ |
 | Policy helpers | ✅ |
-| Invitations | ❌ |
+| Invitations | ➕ (use [Laravel Invitation](https://github.com/vimatech-io/laravel-invitations)) |
 | Permissions | ❌ (use Spatie) |
 | Billing | ❌ |
 | UI | ❌ |
