@@ -2,34 +2,31 @@
 
 ## Supported Versions
 
-| Version | Supported |
-| --- | --- |
-| 1.x | ✅ |
+| Version | Supported          |
+|---------|--------------------|
+| 1.x     | ✅                 |
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in Laravel Membership, please report it privately by emailing: **hello@adelzemzemi.dev**.
+If you discover a security vulnerability within Laravel Membership, please send an email to **hello@adelzemzemi.dev**.
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-We will respond to your report within 48 hours and work on a fix as quickly as possible.
+All security vulnerabilities will be promptly addressed.
 
-## Disclosure Policy
+## What to include
 
-When a security issue is reported, we will:
+- A description of the vulnerability
+- Steps to reproduce
+- Potential impact
+- Suggested fix (if any)
 
-1. Confirm the vulnerability and determine affected versions.
-2. Develop and test a fix.
-3. Release a patched version.
-4. Publish a security advisory on GitHub.
+## Response timeline
 
-We ask that you give us a reasonable amount of time to address the issue before public disclosure.
+- **Acknowledgement:** within 48 hours
+- **Initial assessment:** within 5 business days
+- **Fix release:** as soon as possible, depending on severity
 
-## Best Practices
+## Disclosure policy
 
-When using this package, we recommend:
-
-- Always use the latest stable version.
-- Keep your Laravel framework and PHP runtime up to date.
-- Validate and sanitize user input before passing it to membership actions.
-- Use authorization policies to gate membership operations in your application.
+We follow responsible disclosure. We will coordinate with you on timing before any public disclosure.

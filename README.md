@@ -1,8 +1,6 @@
 # Laravel Membership
 
-[![Tests](https://github.com/vimatech-io/laravel-membership/actions/workflows/tests.yml/badge.svg)](https://github.com/vimatech-io/laravel-membership/actions/workflows/tests.yml)
-[![PHPStan](https://github.com/vimatech-io/laravel-membership/actions/workflows/phpstan.yml/badge.svg)](https://github.com/vimatech-io/laravel-membership/actions/workflows/phpstan.yml)
-[![Pint](https://github.com/vimatech-io/laravel-membership/actions/workflows/pint.yml/badge.svg)](https://github.com/vimatech-io/laravel-membership/actions/workflows/pint.yml)
+[![CI](https://github.com/vimatech-io/laravel-membership/actions/workflows/ci.yml/badge.svg)](https://github.com/vimatech-io/laravel-membership/actions/workflows/ci.yml)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/vimatech/laravel-membership.svg)](https://packagist.org/packages/vimatech/laravel-membership)
 [![Total Downloads](https://img.shields.io/packagist/dt/vimatech/laravel-membership.svg)](https://packagist.org/packages/vimatech/laravel-membership)
 [![License](https://img.shields.io/packagist/l/vimatech/laravel-membership.svg)](https://packagist.org/packages/vimatech/laravel-membership)
@@ -456,6 +454,12 @@ Please ensure:
 - Tests pass (`composer test`)
 - PHPStan passes (`composer analyse`)
 - Code style is formatted with Pint (`composer format`)
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security Vulnerabilities
+
+Please review our [Security Policy](SECURITY.md) for reporting vulnerabilities.
 
 ## License
 
