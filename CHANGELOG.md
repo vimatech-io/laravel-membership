@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The self-demotion and role-escalation guards no longer pass silently on a role they cannot rank. Both looked the level up themselves and skipped the check whenever either side was absent from `membership.roles`, so with the guard explicitly enabled a change to a custom role outside the map was permitted with nothing raised. They now go through `RoleComparator::isAtLeast()`, which was already the loud path and already threw `UnsupportedRoleHierarchyException` for exactly this case — the guards simply were not using it.
+
 - The membership lookup cache is cleared when the application terminates instead of relying on `scoped()` bindings being dropped between requests. Laravel clears scoped bindings in one place only — between queue jobs — so under a worker loop written without Octane the cache survived the request that built it, and a membership revoked or granted elsewhere in the meantime was answered from the previous request's result. A revoked member could still be found as a member.
 
 ## [1.0.1] - 2026-06-26
