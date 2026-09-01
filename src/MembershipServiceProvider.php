@@ -32,11 +32,8 @@ final class MembershipServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // The membership lookup memoises for the length of a request. Scoped bindings
-        // are dropped by the runner, not by the framework — Laravel itself only does it
-        // between queue jobs — so a worker loop written without Octane would keep the
-        // cache, and answer a later request with a membership that has since changed.
-        // Registered once for the application, never per resolved instance.
+        // Scoped bindings are dropped by the runner, not the framework — Laravel only
+        // clears them between queue jobs. Registered once for the application.
         $this->app->terminating(function () {
             $this->app->make(FindMembership::class)->flush();
         });
