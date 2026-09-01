@@ -40,10 +40,7 @@ final class EnsureRoleCanBeChanged
             return;
         }
 
-        $currentLevel = $this->roleComparator->level($membership->role);
-        $newLevel = $this->roleComparator->level($newRole);
-
-        if ($currentLevel !== null && $newLevel !== null && $newLevel < $currentLevel) {
+        if (! $this->roleComparator->isAtLeast($newRole, $membership->role)) {
             throw new SelfDemotionException;
         }
     }
@@ -67,10 +64,7 @@ final class EnsureRoleCanBeChanged
             return;
         }
 
-        $actorLevel = $this->roleComparator->level($actorMembership->role);
-        $newLevel = $this->roleComparator->level($newRole);
-
-        if ($actorLevel !== null && $newLevel !== null && $newLevel > $actorLevel) {
+        if (! $this->roleComparator->isAtLeast($actorMembership->role, $newRole)) {
             throw new RoleEscalationException;
         }
     }
