@@ -8,7 +8,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability within Laravel Membership, please send an email to **hello@adelzemzemi.dev**.
+If you discover a security vulnerability within Laravel Membership, please send an email to **hello@adelzemzemi.com**.
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
