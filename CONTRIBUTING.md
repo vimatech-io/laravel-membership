@@ -37,4 +37,4 @@ composer analyse
 
 ## Security Vulnerabilities
 
-Please report security issues to hello@adelzemzemi.dev directly.
+Please report security issues to hello@adelzemzemi.com directly.
