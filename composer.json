@@ -1,6 +1,6 @@
 {
     "name": "vimatech/laravel-membership",
-    "description": "Polymorphic memberships for Laravel.",
+    "description": "Polymorphic memberships for Laravel: who belongs to what, and with which role. Enum roles, role hierarchy, guards, policy helpers, events and soft deletes, across teams, projects and workspaces.",
     "keywords": ["laravel", "membership", "polymorphic", "roles", "teams", "organizations"],
     "type": "library",
     "license": "MIT",
