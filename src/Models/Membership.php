@@ -114,7 +114,7 @@ class Membership extends Model
 
     protected function runSoftDelete(): void
     {
-        $query = $this->setKeysForSaveQuery($this->newModelQuery()); // @phpstan-ignore argument.type
+        $query = $this->setKeysForSaveQuery($this->newModelQuery());
 
         $time = $this->freshTimestamp();
         $columns = [$this->getDeletedAtColumn() => $this->fromDateTime($time)];
