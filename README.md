@@ -1,15 +1,20 @@
-# Laravel Membership
+<a href="https://vimatech.io/open-source">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://vimatech.io/packages/header/laravel-membership/dark.webp">
+    <img alt="Laravel Membership" src="https://vimatech.io/packages/header/laravel-membership/light.webp">
+  </picture>
+</a>
+
+# Polymorphic memberships for Laravel
 
 [![CI](https://github.com/vimatech-io/laravel-membership/actions/workflows/ci.yml/badge.svg)](https://github.com/vimatech-io/laravel-membership/actions/workflows/ci.yml)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/vimatech/laravel-membership.svg)](https://packagist.org/packages/vimatech/laravel-membership)
 [![Total Downloads](https://img.shields.io/packagist/dt/vimatech/laravel-membership.svg)](https://packagist.org/packages/vimatech/laravel-membership)
 [![License](https://img.shields.io/packagist/l/vimatech/laravel-membership.svg)](https://packagist.org/packages/vimatech/laravel-membership)
 
-**Polymorphic memberships for Laravel.**
+Laravel Membership lets you attach members and roles to any Eloquent model: organizations, teams, projects, workspaces, communities, or anything else.
 
-Laravel Membership lets you attach members and roles to any Eloquent model — organizations, teams, projects, workspaces, communities, or anything else.
-
-It answers **who belongs to what** and **with which role** — nothing more.
+It answers **who belongs to what** and **with which role**, nothing more.
 
 ## Why Laravel Membership?
 
@@ -141,7 +146,7 @@ enum OrganizationRole: string implements MembershipRole
 }
 ```
 
-You can also use plain strings — enums are optional.
+You can also use plain strings: enums are optional.
 
 ### Add a member
 
