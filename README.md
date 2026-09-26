@@ -78,17 +78,39 @@ They are complementary, not competing.
 composer require vimatech/laravel-membership
 ```
 
+The package loads its own migration automatically, so a fresh application only needs:
+
+```bash
+php artisan migrate
+```
+
 ### Publish config
 
 ```bash
 php artisan vendor:publish --tag=membership-config
 ```
 
-### Publish migrations
+### Ordering the migration against your own
+
+The package migration has no timestamp prefix, so Laravel runs it after every timestamped migration your application ships. On a fresh database this fails if one of your own migrations alters `memberships`, or declares a foreign key to it: the table does not exist yet at that point.
+
+If that is your case, publish the migration under a name that sorts before your own, and stop the package from loading its copy:
 
 ```bash
 php artisan vendor:publish --tag=membership-migrations
-php artisan migrate
+```
+
+```php
+// config/membership.php
+'run_migrations' => false,
+```
+
+Do both. Publishing without disabling `run_migrations` runs the migration twice and fails with `table "memberships" already exists`. Disabling it without publishing leaves nothing that creates the table.
+
+On a database that already recorded `create_memberships_table`, do not run the published migration: rename the recorded row instead.
+
+```sql
+UPDATE migrations SET migration = '0001_01_01_000003_create_memberships_table' WHERE migration = 'create_memberships_table';
 ```
 
 ## Usage
@@ -378,6 +400,10 @@ return [
     ],
 
     'soft_deletes' => false,
+
+    // Set to false only after publishing the migration; see "Ordering the migration
+    // against your own" above. Any non-boolean value is refused at boot.
+    'run_migrations' => true,
 ];
 ```
 
