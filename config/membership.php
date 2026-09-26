@@ -29,4 +29,6 @@ return [
     ],
 
     'soft_deletes' => false,
+
+    'run_migrations' => true,
 ];

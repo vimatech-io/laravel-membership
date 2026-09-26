@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vimatech\Membership;
 
 use Illuminate\Support\ServiceProvider;
+use InvalidArgumentException;
 use Vimatech\Membership\Actions\AddMember;
 use Vimatech\Membership\Actions\EnsureNotLastAdmin;
 use Vimatech\Membership\Actions\EnsureNotLastOwner;
@@ -32,7 +33,7 @@ final class MembershipServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Scoped bindings are dropped by the runner, not the framework — Laravel only
+        // Scoped bindings are dropped by the runner, not the framework: Laravel only
         // clears them between queue jobs. Registered once for the application.
         $this->app->terminating(function () {
             $this->app->make(FindMembership::class)->flush();
@@ -44,10 +45,26 @@ final class MembershipServiceProvider extends ServiceProvider
             ], 'membership-config');
 
             $this->publishes([
-                __DIR__.'/../database/migrations' => database_path('migrations'),
+                __DIR__.'/../database/migrations/create_memberships_table.php' => database_path('migrations/0001_01_01_000003_create_memberships_table.php'),
             ], 'membership-migrations');
         }
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        if ($this->runsMigrations()) {
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        }
+    }
+
+    private function runsMigrations(): bool
+    {
+        $runMigrations = $this->app['config']->get('membership.run_migrations');
+
+        if (! is_bool($runMigrations)) {
+            throw new InvalidArgumentException(sprintf(
+                'membership.run_migrations must be true or false, %s given. Set it to false only when your application ships the published memberships migration.',
+                get_debug_type($runMigrations),
+            ));
+        }
+
+        return $runMigrations;
     }
 }
