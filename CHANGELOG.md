@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Upgrading
 
 - With the default configuration nothing changes: the previous owner is still demoted to `admin`.
+- If `membership.admin_roles` does not list the owner role first, the previous owner is now demoted to the first non-owner role of the list instead of its second entry. With `['admin', 'manager']` the previous owner used to become `manager` and now becomes `admin`; with `['manager']` they used to become `admin` and now become `manager`. Order `admin_roles` so that the role previous owners should get is the first non-owner role.
 - A transfer to the current owner now throws. It previously removed the only owner, so no caller could rely on its result; if your code can reach that case, check the member's role before calling.
 - If `membership.admin_roles` lists only owner roles, add the role previous owners should keep, for example `'admin_roles' => ['owner', 'admin']`.
 
