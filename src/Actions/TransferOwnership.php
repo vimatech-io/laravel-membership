@@ -7,6 +7,7 @@ namespace Vimatech\Membership\Actions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Vimatech\Membership\Events\OwnershipTransferred;
+use Vimatech\Membership\Exceptions\CannotTransferOwnershipException;
 use Vimatech\Membership\Exceptions\MembershipNotFoundException;
 use Vimatech\Membership\Models\Membership;
 use Vimatech\Membership\Queries\FindMembership;
@@ -24,9 +25,7 @@ final class TransferOwnership
     ): void {
         $model = config('membership.models.membership', Membership::class);
         $ownerRoles = config('membership.owner_roles', ['owner']);
-        $ownerRole = $ownerRoles[0] ?? 'owner';
-        $demoteRole = config('membership.admin_roles', ['owner', 'admin']);
-        $demoteToRole = $demoteRole[1] ?? 'admin';
+        $ownerRole = $ownerRoles[0] ?? throw CannotTransferOwnershipException::withoutOwnerRole();
 
         $newOwnerMembership = $this->findMembership->execute($newOwner, $membershipable);
 
@@ -40,6 +39,12 @@ final class TransferOwnership
             ->whereIn('role', $ownerRoles)
             ->oldest()
             ->first();
+
+        if ($currentOwnerMembership?->is($newOwnerMembership)) {
+            throw CannotTransferOwnershipException::toCurrentOwner();
+        }
+
+        $demoteToRole = $currentOwnerMembership ? $this->demotionRole($ownerRoles) : null;
 
         DB::beginTransaction();
 
@@ -68,5 +73,19 @@ final class TransferOwnership
 
             throw $e;
         }
+    }
+
+    /**
+     * @param  array<int, string>  $ownerRoles
+     */
+    private function demotionRole(array $ownerRoles): string
+    {
+        foreach (config('membership.admin_roles', ['owner', 'admin']) as $role) {
+            if (! in_array($role, $ownerRoles, true)) {
+                return $role;
+            }
+        }
+
+        throw CannotTransferOwnershipException::withoutDemotionRole();
     }
 }
