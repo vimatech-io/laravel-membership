@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `TransferOwnership` no longer leaves an entity without an owner when ownership is transferred to the member who already holds it. The previous owner's row was demoted, then the promotion of the same row was skipped because Eloquent saw no change on the second instance it held, and `OwnershipTransferred` was dispatched anyway. The call now throws `CannotTransferOwnershipException` and changes nothing.
+- `TransferOwnership` no longer guesses the role the previous owner is demoted to. It read the second entry of `membership.admin_roles` and fell back to `admin` when there was none: with `admin_roles` set to `['owner']` the previous owner became `admin`, a role the configuration never declared, and with `['admin', 'owner']` it stayed `owner`, leaving two owners. The previous owner now gets the first role of `membership.admin_roles` that is not in `membership.owner_roles`. When there is none, or when `membership.owner_roles` is empty, the call throws `CannotTransferOwnershipException` naming the key to fix, before anything is written.
+
+### Upgrading
+
+- With the default configuration nothing changes: the previous owner is still demoted to `admin`.
+- If `membership.admin_roles` does not list the owner role first, the previous owner is now demoted to the first non-owner role of the list instead of its second entry. With `['admin', 'manager']` the previous owner used to become `manager` and now becomes `admin`; with `['manager']` they used to become `admin` and now become `manager`. Order `admin_roles` so that the role previous owners should get is the first non-owner role.
+- A transfer to the current owner now throws. It previously removed the only owner, so no caller could rely on its result; if your code can reach that case, check the member's role before calling.
+- If `membership.admin_roles` lists only owner roles, add the role previous owners should keep, for example `'admin_roles' => ['owner', 'admin']`.
+
 ## [1.1.0] - 2026-09-26
 
 ### Added
