@@ -12,7 +12,7 @@ If you discover a security vulnerability within Laravel Membership, please send 
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-All security vulnerabilities will be promptly addressed.
+Every report is read and taken seriously.
 
 ## What to include
 
@@ -23,10 +23,14 @@ All security vulnerabilities will be promptly addressed.
 
 ## Response timeline
 
-- **Acknowledgement:** within 48 hours
-- **Initial assessment:** within 5 business days
-- **Fix release:** as soon as possible, depending on severity
+This package is maintained on a best-effort basis. The timings below are targets, not guarantees.
+
+- **Acknowledgement:** we aim to acknowledge your report within 5 business days.
+- **Initial assessment:** we aim to share a first assessment within 10 business days of acknowledgement.
+- **Fix release:** prioritised according to severity. We will keep you informed of progress.
+
+If you have not received an acknowledgement after 10 business days, please send a follow-up email to the same address.
 
 ## Disclosure policy
 
-We follow responsible disclosure. We will coordinate with you on timing before any public disclosure.
+We follow coordinated disclosure. Please give us a reasonable opportunity to release a fix before any public disclosure, and we will agree the timing with you.
