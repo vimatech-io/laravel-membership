@@ -67,12 +67,12 @@ They are complementary, not competing.
 - Agency client portals
 - Internal company tools
 
-## Installation
-
-### Requirements
+## Requirements
 
 - PHP 8.3+
 - Laravel 11, 12 or 13
+
+## Installation
 
 ```bash
 composer require vimatech/laravel-membership
@@ -460,16 +460,6 @@ Design principles:
 - Clean and testable actions
 
 It does not aim to become a permissions framework, a billing system, a UI framework, or a complete SaaS platform.
-
-## Possible Future Extensions
-
-- Invitation bridge
-- Audit logs
-- Membership expiration
-- Filament integrations
-- Livewire components
-
-Future extensions may be released as separate packages to keep the core package small and focused.
 
 ## Testing
 

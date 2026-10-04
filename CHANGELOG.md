@@ -39,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unify CI into a single workflow and test against Laravel 13.
 - Add Dependabot, `.gitattributes` (`export-ignore`) and align project meta (CONTRIBUTING, SECURITY, LICENSE).
 
-## [1.0.0] - 2026-05-18
+## [1.0.0] - 2026-05-21
 
 ### Added
 
