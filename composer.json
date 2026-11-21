@@ -2,7 +2,7 @@
     "name": "vimatech/laravel-membership",
     "description": "Polymorphic memberships for Laravel: who belongs to what, and with which role. Enum roles, role hierarchy, guards, policy helpers, events and soft deletes, across teams, projects and workspaces.",
     "keywords": ["laravel", "membership", "polymorphic", "roles", "teams", "organizations"],
-    "homepage": "https://github.com/vimatech-io/laravel-membership",
+    "homepage": "https://vimatech.io/open-source/",
     "support": {
         "issues": "https://github.com/vimatech-io/laravel-membership/issues",
         "source": "https://github.com/vimatech-io/laravel-membership",
@@ -13,7 +13,8 @@
     "authors": [
         {
             "name": "Adel Zemzemi",
-            "email": "hello@adelzemzemi.com"
+            "email": "hello@adelzemzemi.com",
+            "homepage": "https://adelzemzemi.com/"
         }
     ],
     "require": {
